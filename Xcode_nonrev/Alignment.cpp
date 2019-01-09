@@ -9,11 +9,11 @@
 
 Alignment::Alignment(std::string fileName) {
 
-    std::cout << "   * Reading data file \"" << fileName << "\"" << std::endl;
-
 	/* open the file */
 	std::ifstream seqStream(fileName.c_str());
-	if (!seqStream) 
+	if (seqStream.is_open() == true)
+        std::cout << "   * Reading data file \"" << fileName << "\"" << std::endl;
+    else
 		{
 		std::cerr << "Cannot open file \"" + fileName + "\"" << std::endl;
 		exit(1);
@@ -21,39 +21,31 @@ Alignment::Alignment(std::string fileName) {
 
 	std::string linestring = "";
 	int line = 0;
-	std::string theSequence = "";
 	int taxonNum = 0;
 	matrix = NULL;
 	numTaxa = numChar = 0;
-	bool excludeLine = false, charSetLine = false;
-	bool* tempVec = NULL;
-	int pid = 0;
-	while( getline(seqStream, linestring).good() )
+    while ( getline (seqStream, linestring) )
 		{
 		std::istringstream linestream(linestring);
+        std::cout << line << " -- \"" << linestring << "\"" << std::endl;
 		int ch;
 		std::string word = "";
 		int wordNum = 0;
 		int siteNum = 0;
-		excludeLine = false;
-		charSetLine = false;
 		std::string cmdString = "";
-        bool foundEqualSign = false;
 		do
 			{
 			word = "";
 			linestream >> word;
 			wordNum++;
+            std::cout << "word:" << wordNum << "\"" << word << "\"" << std::endl;
 			if (line == 0)
 				{
 				/* read the number of taxa/chars from the first line */
-				int x;
-				std::istringstream buf(word);
-				buf >> x;
 				if (wordNum == 1)
-					numTaxa = x;
+					numTaxa = atoi(word.c_str());
 				else
-					numChar = numSitePatterns = x;
+					numChar = atoi(word.c_str());
 				if (numTaxa > 0 && numChar > 0 && matrix == NULL)
 					{	
 					matrix = new int*[numTaxa];
@@ -63,14 +55,6 @@ Alignment::Alignment(std::string fileName) {
 					for (size_t i=0; i<numTaxa; i++)
 						for (size_t j=0; j<numChar; j++)
 							matrix[i][j] = 0;
-					isExcluded = new bool[numChar];
-					partitionId = new size_t[numChar];
-					for (size_t i=0; i<numChar; i++)
-						{
-						isExcluded[i] = false;
-						partitionId[i] = -1;
-						}
-					tempVec = new bool[numChar];
                     std::cout << "   * Analysis has " << numTaxa << " taxa and " << numChar << " characters" << std::endl;
 					}
 				}
@@ -78,94 +62,22 @@ Alignment::Alignment(std::string fileName) {
 				{
 				if (wordNum == 1)
 					{
-					if ( word == "exclude" )
-                        {
-						excludeLine = true;
-                        foundEqualSign = false;
-                        }
-					else if ( word == "charset" )
-                        {
-						charSetLine = true;
-                        foundEqualSign = false;
-                        }
-					else
-						{
-						taxonNames.push_back(word);
-						taxonNum++;
-						}
+                    taxonNames.push_back(word);
+                    taxonNum++;
 					}
 				else
 					{
-					if (excludeLine == true || charSetLine == true)
-						{
-						for (int i=0; i<word.size(); i++)
-							{
-                            if (word.at(i) == '=')
-                                foundEqualSign = true;
-                            if (foundEqualSign == true)
-                                {
-                                if ( isdigit(word.at(i)) )
-                                    cmdString += word.at(i);
-                                else if ( word.at(i) == '-' )
-                                    cmdString += " - ";
-                                else if (word.at(i) == '\\')
-                                    cmdString += " \\ ";
-                                }
-							}
-						cmdString += " ";
-						for (int i=0; i<word.size(); i++)
-							{
-							if ( word.at(i) == ';' )
-								{
-								interpretString(cmdString, tempVec, numChar);
-								if (excludeLine == true)
-									{
-									for (int i=0; i<numChar; i++)
-										if (tempVec[i] == true)
-											isExcluded[i] = true;
-									}
-								else if (charSetLine == true)
-									{
-									pid++;
-									for (int i=0; i<numChar; i++)
-										if (tempVec[i] == true)
-											partitionId[i] = pid;
-									}
-								}
-							}
-						}
-					else
-						{
-						for (int i=0; i<word.length(); i++)
-							{
-							char site = word.at(i);
-							matrix[taxonNum-1][siteNum++] = nucID(site);
-							}
-						}
+                    for (int i=0; i<word.length(); i++)
+                        {
+                        char site = word.at(i);
+                        matrix[taxonNum-1][siteNum++] = nucID(site);
+                        }
 					}
 				}
 			} while ( (ch=linestream.get()) != EOF );
 			
-		// NOTE: We probably do not need this bit of code.
-		if (line == 0)
-			{
-			/* the first line should contain the number of taxa and the sequence length */
-			std::istringstream buf(word);
-			//buf >> genomeSize;
-			}
-		else
-			{
-			for (int i=0; i<word.length(); i++)
-				{
-				char site = word.at(i);
-				if (tolower(site) == 'a' || tolower(site) == 'c' || tolower(site) == 'g' || tolower(site) == 't')
-					theSequence += tolower(site);
-				}
-			}
 		line++;
 		}	
-
-	delete [] tempVec;
 	
 	/* close the file */
 	seqStream.close();
@@ -175,8 +87,6 @@ Alignment::~Alignment(void) {
 
 	delete [] matrix[0];
 	delete [] matrix;
-	delete [] isExcluded;
-	delete [] partitionId;
 }
 
 int Alignment::getNucleotide(size_t i, size_t j) {
@@ -342,36 +252,6 @@ void Alignment::listTaxa(void) {
 		std::cout << std::setw(4) << i++ << " -- " << (*p) << '\n';
 }
 
-size_t Alignment::getNumSubsets(void) {
-
-	size_t largestId = 0;
-	for (size_t i=0; i<numChar; i++)
-		{
-		if (partitionId[i] > largestId)
-			{
-			largestId = partitionId[i];
-			}
-		}
-		
-	bool* isPartHere = new bool[largestId];
-	for (size_t i=0; i<largestId; i++)
-		isPartHere[i] = false;
-	for (size_t i=0; i<numChar; i++)
-		{
-		if (isExcluded[i] == false)
-			{
-			isPartHere[ partitionId[i]-1 ] = true;
-			}
-		}
-	size_t numParts = 0;
-	for (size_t i=0; i<largestId; i++)
-		if (isPartHere[i] == true)
-			numParts++;
-	delete [] isPartHere;
-		
-	return numParts;
-}
-
 std::string Alignment::getTaxonName(int i) {
 
 	return taxonNames[i];
@@ -391,105 +271,6 @@ int Alignment::getTaxonIndex(std::string ns) {
 		i++;
 		}
 	return taxonIndex;
-}
-
-void Alignment::interpretString(std::string s, bool* v, int n) {
-
-	for (size_t i=0; i<n; i++)
-		v[i] = false;
-	int nums[3];
-	int numToRemember = 0;
-	//(*log) << "s = \"" << s << "\"" << std::endl;
-
-	/* push the individual words (numbers, hyphens, or back slashes into a vector */
-	std::vector<std::string> cmds;
-	std::istringstream linestream(s);
-	int ch;
-	std::string word = "";
-	do
-		{
-		word = "";
-		linestream >> word;
-		if (word != "")
-			{
-			cmds.push_back( word );
-			}
-		} while( (ch=linestream.get()) != EOF );
-		
-	/* loop over the vector of individual words and correctly interpret things */
-	int i = 0;
-	for (std::vector<std::string>::iterator p=cmds.begin(); p != cmds.end(); p++)
-		{
-		//(*log) << "\"" << (*p) << "\"" << std::endl;
-		if ( isdigit((*p)[0]) )
-			{
-			
-			/* we can potentially complete a sentence */
-			std::string prevWord = "";
-			if (i > 0)
-				prevWord = cmds[i-1];
-			std::string nextWord = "";
-			if (i != cmds.size() - 1)
-				nextWord = cmds[i+1];
-			
-			int x;
-			std::istringstream buf(cmds[i]);
-			buf >> x;
-
-			if (prevWord == "" || isNumber(prevWord) == true)
-				{
-				nums[0] = x;
-				numToRemember = 1;
-				}
-			else if (prevWord == "-")
-				{
-				nums[1] = x;
-				numToRemember = 2;
-				}
-			else if (prevWord == "\\")
-				{
-				nums[2] = x;
-				numToRemember = 3;
-				}
-			else
-				{
-				std::cerr << "ERROR: Problem interpreting string" << std::endl;
-				exit(1);
-				}
-			
-			if ( (prevWord == "" || isNumber(prevWord) == true) && (nextWord == "" || isNumber(nextWord) == true) )
-				{
-				v[nums[0]-1] = true;
-				numToRemember = 0;
-				}
-			else if ( prevWord == "-" && (nextWord == "" || isNumber(nextWord) == true) )
-				{
-				for (int i=nums[0]-1; i<nums[1]; i++)
-					v[i] = true;
-				numToRemember = 0;
-				}
-			else if ( prevWord == "\\" )
-				{
-				for (int i=nums[0]-1, k=nums[2]; i<nums[1]; i++, k++)
-					if ( k % nums[2] == 0 )
-						v[i] = true;
-				numToRemember = 0;
-				}
-			}
-		i++;
-		}
-}
-
-bool Alignment::isNumber(std::string s) {
-
-	if (s == "")
-		return false;
-
-	bool isnum = true;
-	for (size_t i=0; i<s.size(); i++)
-		if ( !isdigit(s[i]) )
-			isnum = false;
-	return isnum;
 }
 
 /*-------------------------------------------------------------------
@@ -609,7 +390,7 @@ void Alignment::print(void) {
 	for (size_t i=0; i<numTaxa; i++)
 		std::cout << "---";
 	std::cout << '\n';
-	for (size_t j=0; j<numSitePatterns; j++)
+	for (size_t j=0; j<numChar; j++)
 		{
 		std::cout << std::setw(4) << j+1 << " -- ";
 		for (size_t i=0; i<numTaxa; i++)
@@ -618,8 +399,6 @@ void Alignment::print(void) {
 			}
 		std::cout << '\n';
 		}
-		
-	int sum = 0;
 }
 
 

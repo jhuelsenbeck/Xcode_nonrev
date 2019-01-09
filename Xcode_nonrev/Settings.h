@@ -22,7 +22,6 @@ class Settings {
         int             getSampleLength(void) { return sampleLength; }
         std::string     getTreeFileName(void) { return treeFileName; }
         int             getTuneLength(void) { return tuneLength; }
-        double          getTuningParm(std::string parmNameStr);
         void            setAsrvLambda(double x) { asrvLambda = x; }
         void            setInputFileName(std::string s) { inputFileName = s; }
         void            setIsReversible(bool tf) { isReversible = tf; }
@@ -37,7 +36,6 @@ class Settings {
         std::string     outPutFileName;
         std::string     treeFileName;
         double          asrvLambda;
-        double          tuningParm[5];
         int             chainLength;
         int             preburninLength;
         int             tuneLength;

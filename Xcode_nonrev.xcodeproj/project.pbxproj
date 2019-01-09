@@ -44,44 +44,44 @@
 /* Begin PBXFileReference section */
 		22BDACE721E581A4009AAD49 /* Xcode_nonrev */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Xcode_nonrev; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BDACF121E582ED009AAD49 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
-		22BDACF221E582ED009AAD49 /* ConditionalLikelihoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionalLikelihoods.h; sourceTree = "<group>"; };
-		22BDACF321E582ED009AAD49 /* ParameterAsrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterAsrv.h; sourceTree = "<group>"; };
-		22BDACF421E582ED009AAD49 /* RandomVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomVariable.h; sourceTree = "<group>"; };
+		22BDACF221E582ED009AAD49 /* ConditionalLikelihoods.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ConditionalLikelihoods.h; sourceTree = "<group>"; };
+		22BDACF321E582ED009AAD49 /* ParameterAsrv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ParameterAsrv.h; sourceTree = "<group>"; };
+		22BDACF421E582ED009AAD49 /* RandomVariable.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = RandomVariable.h; sourceTree = "<group>"; };
 		22BDACF521E582ED009AAD49 /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
 		22BDACF621E582ED009AAD49 /* BranchFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BranchFactory.cpp; sourceTree = "<group>"; };
-		22BDACF721E582ED009AAD49 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		22BDACF821E582ED009AAD49 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		22BDACF721E582ED009AAD49 /* Settings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Settings.h; sourceTree = "<group>"; };
+		22BDACF821E582ED009AAD49 /* Node.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Node.h; sourceTree = "<group>"; };
 		22BDACF921E582EE009AAD49 /* NodeFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFactory.cpp; sourceTree = "<group>"; };
 		22BDACFA21E582EE009AAD49 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		22BDACFB21E582EE009AAD49 /* NodePair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodePair.cpp; sourceTree = "<group>"; };
 		22BDACFC21E582EE009AAD49 /* ParameterBaseFrequencies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterBaseFrequencies.cpp; sourceTree = "<group>"; };
 		22BDACFD21E582EE009AAD49 /* ParameterExchangabilityRates.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterExchangabilityRates.cpp; sourceTree = "<group>"; };
-		22BDACFE21E582EE009AAD49 /* ParameterExchangabilityRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterExchangabilityRates.h; sourceTree = "<group>"; };
+		22BDACFE21E582EE009AAD49 /* ParameterExchangabilityRates.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ParameterExchangabilityRates.h; sourceTree = "<group>"; };
 		22BDACFF21E582EE009AAD49 /* Alignment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Alignment.cpp; sourceTree = "<group>"; };
 		22BDAD0021E582EE009AAD49 /* ParameterAsrv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterAsrv.cpp; sourceTree = "<group>"; };
-		22BDAD0121E582EE009AAD49 /* ProposalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalInfo.h; sourceTree = "<group>"; };
-		22BDAD0221E582EE009AAD49 /* NodeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeFactory.h; sourceTree = "<group>"; };
+		22BDAD0121E582EE009AAD49 /* ProposalInfo.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ProposalInfo.h; sourceTree = "<group>"; };
+		22BDAD0221E582EE009AAD49 /* NodeFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = NodeFactory.h; sourceTree = "<group>"; };
 		22BDAD0321E582EE009AAD49 /* ParameterTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterTree.cpp; sourceTree = "<group>"; };
 		22BDAD0421E582EE009AAD49 /* TransitionProbabilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransitionProbabilities.cpp; sourceTree = "<group>"; };
-		22BDAD0521E582EE009AAD49 /* TransitionProbabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionProbabilities.h; sourceTree = "<group>"; };
-		22BDAD0621E582EE009AAD49 /* NodePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodePair.h; sourceTree = "<group>"; };
-		22BDAD0721E582EF009AAD49 /* Mcmc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mcmc.h; sourceTree = "<group>"; };
+		22BDAD0521E582EE009AAD49 /* TransitionProbabilities.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = TransitionProbabilities.h; sourceTree = "<group>"; };
+		22BDAD0621E582EE009AAD49 /* NodePair.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = NodePair.h; sourceTree = "<group>"; };
+		22BDAD0721E582EF009AAD49 /* Mcmc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Mcmc.h; sourceTree = "<group>"; };
 		22BDAD0821E582EF009AAD49 /* Msg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Msg.cpp; sourceTree = "<group>"; };
 		22BDAD0921E582EF009AAD49 /* Branch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Branch.h; sourceTree = "<group>"; };
-		22BDAD0A21E582EF009AAD49 /* BranchFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchFactory.h; sourceTree = "<group>"; };
+		22BDAD0A21E582EF009AAD49 /* BranchFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = BranchFactory.h; sourceTree = "<group>"; };
 		22BDAD0B21E582EF009AAD49 /* ConditionalLikelihoods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConditionalLikelihoods.cpp; sourceTree = "<group>"; };
 		22BDAD0C21E582EF009AAD49 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
 		22BDAD0D21E582EF009AAD49 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		22BDAD0E21E582EF009AAD49 /* Mcmc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mcmc.cpp; sourceTree = "<group>"; };
-		22BDAD0F21E582EF009AAD49 /* ParameterTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterTree.h; sourceTree = "<group>"; };
-		22BDAD1021E582EF009AAD49 /* Parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parameter.h; sourceTree = "<group>"; };
+		22BDAD0F21E582EF009AAD49 /* ParameterTree.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ParameterTree.h; sourceTree = "<group>"; };
+		22BDAD1021E582EF009AAD49 /* Parameter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Parameter.h; sourceTree = "<group>"; };
 		22BDAD1121E582EF009AAD49 /* Parameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parameter.cpp; sourceTree = "<group>"; };
-		22BDAD1221E582EF009AAD49 /* Alignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alignment.h; sourceTree = "<group>"; };
+		22BDAD1221E582EF009AAD49 /* Alignment.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Alignment.h; sourceTree = "<group>"; };
 		22BDAD1321E582F0009AAD49 /* RandomVariable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandomVariable.cpp; sourceTree = "<group>"; };
 		22BDAD1421E582F0009AAD49 /* ProposalInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProposalInfo.cpp; sourceTree = "<group>"; };
-		22BDAD1521E582F0009AAD49 /* Msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Msg.h; sourceTree = "<group>"; };
-		22BDAD1621E582F0009AAD49 /* ParameterBaseFrequencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterBaseFrequencies.h; sourceTree = "<group>"; };
-		22BDAD1721E582F0009AAD49 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		22BDAD1521E582F0009AAD49 /* Msg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Msg.h; sourceTree = "<group>"; };
+		22BDAD1621E582F0009AAD49 /* ParameterBaseFrequencies.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ParameterBaseFrequencies.h; sourceTree = "<group>"; };
+		22BDAD1721E582F0009AAD49 /* Model.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Model.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +271,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -279,7 +280,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -330,6 +331,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -354,6 +356,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/johnh/Applications/eigen-eigen-b3f3d4950030",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -362,6 +369,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"/Users/johnh/Applications/eigen-eigen-b3f3d4950030",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
