@@ -7,7 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22BDACEB21E581A4009AAD49 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACEA21E581A4009AAD49 /* main.cpp */; };
+		22BDAD1821E582F0009AAD49 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF121E582ED009AAD49 /* Model.cpp */; };
+		22BDAD1921E582F0009AAD49 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF521E582ED009AAD49 /* Settings.cpp */; };
+		22BDAD1A21E582F0009AAD49 /* BranchFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF621E582ED009AAD49 /* BranchFactory.cpp */; };
+		22BDAD1B21E582F0009AAD49 /* NodeFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF921E582EE009AAD49 /* NodeFactory.cpp */; };
+		22BDAD1C21E582F0009AAD49 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACFA21E582EE009AAD49 /* Node.cpp */; };
+		22BDAD1D21E582F0009AAD49 /* NodePair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACFB21E582EE009AAD49 /* NodePair.cpp */; };
+		22BDAD1E21E582F0009AAD49 /* ParameterBaseFrequencies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACFC21E582EE009AAD49 /* ParameterBaseFrequencies.cpp */; };
+		22BDAD1F21E582F0009AAD49 /* ParameterExchangabilityRates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACFD21E582EE009AAD49 /* ParameterExchangabilityRates.cpp */; };
+		22BDAD2021E582F0009AAD49 /* Alignment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACFF21E582EE009AAD49 /* Alignment.cpp */; };
+		22BDAD2121E582F0009AAD49 /* ParameterAsrv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0021E582EE009AAD49 /* ParameterAsrv.cpp */; };
+		22BDAD2221E582F0009AAD49 /* ParameterTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0321E582EE009AAD49 /* ParameterTree.cpp */; };
+		22BDAD2321E582F0009AAD49 /* TransitionProbabilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0421E582EE009AAD49 /* TransitionProbabilities.cpp */; };
+		22BDAD2421E582F0009AAD49 /* Msg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0821E582EF009AAD49 /* Msg.cpp */; };
+		22BDAD2521E582F0009AAD49 /* ConditionalLikelihoods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0B21E582EF009AAD49 /* ConditionalLikelihoods.cpp */; };
+		22BDAD2621E582F0009AAD49 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0C21E582EF009AAD49 /* Branch.cpp */; };
+		22BDAD2721E582F0009AAD49 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0D21E582EF009AAD49 /* main.cpp */; };
+		22BDAD2821E582F0009AAD49 /* Mcmc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD0E21E582EF009AAD49 /* Mcmc.cpp */; };
+		22BDAD2921E582F0009AAD49 /* Parameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD1121E582EF009AAD49 /* Parameter.cpp */; };
+		22BDAD2A21E582F0009AAD49 /* RandomVariable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD1321E582F0009AAD49 /* RandomVariable.cpp */; };
+		22BDAD2B21E582F0009AAD49 /* ProposalInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDAD1421E582F0009AAD49 /* ProposalInfo.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +43,45 @@
 
 /* Begin PBXFileReference section */
 		22BDACE721E581A4009AAD49 /* Xcode_nonrev */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Xcode_nonrev; sourceTree = BUILT_PRODUCTS_DIR; };
-		22BDACEA21E581A4009AAD49 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		22BDACF121E582ED009AAD49 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		22BDACF221E582ED009AAD49 /* ConditionalLikelihoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionalLikelihoods.h; sourceTree = "<group>"; };
+		22BDACF321E582ED009AAD49 /* ParameterAsrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterAsrv.h; sourceTree = "<group>"; };
+		22BDACF421E582ED009AAD49 /* RandomVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomVariable.h; sourceTree = "<group>"; };
+		22BDACF521E582ED009AAD49 /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
+		22BDACF621E582ED009AAD49 /* BranchFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BranchFactory.cpp; sourceTree = "<group>"; };
+		22BDACF721E582ED009AAD49 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		22BDACF821E582ED009AAD49 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		22BDACF921E582EE009AAD49 /* NodeFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFactory.cpp; sourceTree = "<group>"; };
+		22BDACFA21E582EE009AAD49 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		22BDACFB21E582EE009AAD49 /* NodePair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodePair.cpp; sourceTree = "<group>"; };
+		22BDACFC21E582EE009AAD49 /* ParameterBaseFrequencies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterBaseFrequencies.cpp; sourceTree = "<group>"; };
+		22BDACFD21E582EE009AAD49 /* ParameterExchangabilityRates.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterExchangabilityRates.cpp; sourceTree = "<group>"; };
+		22BDACFE21E582EE009AAD49 /* ParameterExchangabilityRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterExchangabilityRates.h; sourceTree = "<group>"; };
+		22BDACFF21E582EE009AAD49 /* Alignment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Alignment.cpp; sourceTree = "<group>"; };
+		22BDAD0021E582EE009AAD49 /* ParameterAsrv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterAsrv.cpp; sourceTree = "<group>"; };
+		22BDAD0121E582EE009AAD49 /* ProposalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalInfo.h; sourceTree = "<group>"; };
+		22BDAD0221E582EE009AAD49 /* NodeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeFactory.h; sourceTree = "<group>"; };
+		22BDAD0321E582EE009AAD49 /* ParameterTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParameterTree.cpp; sourceTree = "<group>"; };
+		22BDAD0421E582EE009AAD49 /* TransitionProbabilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransitionProbabilities.cpp; sourceTree = "<group>"; };
+		22BDAD0521E582EE009AAD49 /* TransitionProbabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionProbabilities.h; sourceTree = "<group>"; };
+		22BDAD0621E582EE009AAD49 /* NodePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodePair.h; sourceTree = "<group>"; };
+		22BDAD0721E582EF009AAD49 /* Mcmc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mcmc.h; sourceTree = "<group>"; };
+		22BDAD0821E582EF009AAD49 /* Msg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Msg.cpp; sourceTree = "<group>"; };
+		22BDAD0921E582EF009AAD49 /* Branch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Branch.h; sourceTree = "<group>"; };
+		22BDAD0A21E582EF009AAD49 /* BranchFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchFactory.h; sourceTree = "<group>"; };
+		22BDAD0B21E582EF009AAD49 /* ConditionalLikelihoods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConditionalLikelihoods.cpp; sourceTree = "<group>"; };
+		22BDAD0C21E582EF009AAD49 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
+		22BDAD0D21E582EF009AAD49 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		22BDAD0E21E582EF009AAD49 /* Mcmc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mcmc.cpp; sourceTree = "<group>"; };
+		22BDAD0F21E582EF009AAD49 /* ParameterTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterTree.h; sourceTree = "<group>"; };
+		22BDAD1021E582EF009AAD49 /* Parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parameter.h; sourceTree = "<group>"; };
+		22BDAD1121E582EF009AAD49 /* Parameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parameter.cpp; sourceTree = "<group>"; };
+		22BDAD1221E582EF009AAD49 /* Alignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alignment.h; sourceTree = "<group>"; };
+		22BDAD1321E582F0009AAD49 /* RandomVariable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandomVariable.cpp; sourceTree = "<group>"; };
+		22BDAD1421E582F0009AAD49 /* ProposalInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProposalInfo.cpp; sourceTree = "<group>"; };
+		22BDAD1521E582F0009AAD49 /* Msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Msg.h; sourceTree = "<group>"; };
+		22BDAD1621E582F0009AAD49 /* ParameterBaseFrequencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterBaseFrequencies.h; sourceTree = "<group>"; };
+		22BDAD1721E582F0009AAD49 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +114,45 @@
 		22BDACE921E581A4009AAD49 /* Xcode_nonrev */ = {
 			isa = PBXGroup;
 			children = (
-				22BDACEA21E581A4009AAD49 /* main.cpp */,
+				22BDACFF21E582EE009AAD49 /* Alignment.cpp */,
+				22BDAD1221E582EF009AAD49 /* Alignment.h */,
+				22BDAD0C21E582EF009AAD49 /* Branch.cpp */,
+				22BDAD0921E582EF009AAD49 /* Branch.h */,
+				22BDACF621E582ED009AAD49 /* BranchFactory.cpp */,
+				22BDAD0A21E582EF009AAD49 /* BranchFactory.h */,
+				22BDAD0B21E582EF009AAD49 /* ConditionalLikelihoods.cpp */,
+				22BDACF221E582ED009AAD49 /* ConditionalLikelihoods.h */,
+				22BDAD0D21E582EF009AAD49 /* main.cpp */,
+				22BDAD0E21E582EF009AAD49 /* Mcmc.cpp */,
+				22BDAD0721E582EF009AAD49 /* Mcmc.h */,
+				22BDACF121E582ED009AAD49 /* Model.cpp */,
+				22BDAD1721E582F0009AAD49 /* Model.h */,
+				22BDAD0821E582EF009AAD49 /* Msg.cpp */,
+				22BDAD1521E582F0009AAD49 /* Msg.h */,
+				22BDACFA21E582EE009AAD49 /* Node.cpp */,
+				22BDACF821E582ED009AAD49 /* Node.h */,
+				22BDACF921E582EE009AAD49 /* NodeFactory.cpp */,
+				22BDAD0221E582EE009AAD49 /* NodeFactory.h */,
+				22BDACFB21E582EE009AAD49 /* NodePair.cpp */,
+				22BDAD0621E582EE009AAD49 /* NodePair.h */,
+				22BDAD1121E582EF009AAD49 /* Parameter.cpp */,
+				22BDAD1021E582EF009AAD49 /* Parameter.h */,
+				22BDAD0021E582EE009AAD49 /* ParameterAsrv.cpp */,
+				22BDACF321E582ED009AAD49 /* ParameterAsrv.h */,
+				22BDACFC21E582EE009AAD49 /* ParameterBaseFrequencies.cpp */,
+				22BDAD1621E582F0009AAD49 /* ParameterBaseFrequencies.h */,
+				22BDACFD21E582EE009AAD49 /* ParameterExchangabilityRates.cpp */,
+				22BDACFE21E582EE009AAD49 /* ParameterExchangabilityRates.h */,
+				22BDAD0321E582EE009AAD49 /* ParameterTree.cpp */,
+				22BDAD0F21E582EF009AAD49 /* ParameterTree.h */,
+				22BDAD1421E582F0009AAD49 /* ProposalInfo.cpp */,
+				22BDAD0121E582EE009AAD49 /* ProposalInfo.h */,
+				22BDAD1321E582F0009AAD49 /* RandomVariable.cpp */,
+				22BDACF421E582ED009AAD49 /* RandomVariable.h */,
+				22BDACF521E582ED009AAD49 /* Settings.cpp */,
+				22BDACF721E582ED009AAD49 /* Settings.h */,
+				22BDAD0421E582EE009AAD49 /* TransitionProbabilities.cpp */,
+				22BDAD0521E582EE009AAD49 /* TransitionProbabilities.h */,
 			);
 			path = Xcode_nonrev;
 			sourceTree = "<group>";
@@ -118,7 +213,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22BDACEB21E581A4009AAD49 /* main.cpp in Sources */,
+				22BDAD2321E582F0009AAD49 /* TransitionProbabilities.cpp in Sources */,
+				22BDAD2921E582F0009AAD49 /* Parameter.cpp in Sources */,
+				22BDAD2A21E582F0009AAD49 /* RandomVariable.cpp in Sources */,
+				22BDAD1A21E582F0009AAD49 /* BranchFactory.cpp in Sources */,
+				22BDAD1D21E582F0009AAD49 /* NodePair.cpp in Sources */,
+				22BDAD1F21E582F0009AAD49 /* ParameterExchangabilityRates.cpp in Sources */,
+				22BDAD1921E582F0009AAD49 /* Settings.cpp in Sources */,
+				22BDAD1B21E582F0009AAD49 /* NodeFactory.cpp in Sources */,
+				22BDAD2221E582F0009AAD49 /* ParameterTree.cpp in Sources */,
+				22BDAD2B21E582F0009AAD49 /* ProposalInfo.cpp in Sources */,
+				22BDAD2821E582F0009AAD49 /* Mcmc.cpp in Sources */,
+				22BDAD1821E582F0009AAD49 /* Model.cpp in Sources */,
+				22BDAD2021E582F0009AAD49 /* Alignment.cpp in Sources */,
+				22BDAD1E21E582F0009AAD49 /* ParameterBaseFrequencies.cpp in Sources */,
+				22BDAD2621E582F0009AAD49 /* Branch.cpp in Sources */,
+				22BDAD2521E582F0009AAD49 /* ConditionalLikelihoods.cpp in Sources */,
+				22BDAD1C21E582F0009AAD49 /* Node.cpp in Sources */,
+				22BDAD2121E582F0009AAD49 /* ParameterAsrv.cpp in Sources */,
+				22BDAD2721E582F0009AAD49 /* main.cpp in Sources */,
+				22BDAD2421E582F0009AAD49 /* Msg.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
