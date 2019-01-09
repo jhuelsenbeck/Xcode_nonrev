@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include "ParameterExchangabilityRates.h"
@@ -76,6 +77,49 @@ void ParameterExchangabilityRates::print(void) {
 
 double ParameterExchangabilityRates::update(void) {
     
+#   if 1
+
+    // number of elements in the simplex
+    int n = (int)a.size();
+    
+    // pick the element to update
+    int k = (int)(rv->uniformRv() * n);
+    
+    // change value
+    std::vector<double> oldFreqs(2);
+    std::vector<double> newFreqs(2);
+    std::vector<double> aForward(2);
+    std::vector<double> aReverse(2);
+    oldFreqs[0] = f[k];
+    oldFreqs[1] = 1.0 - f[k];
+    for (int i=0; i<2; i++)
+        {
+        aForward[i] = oldFreqs[i] * alpha0;
+        if (aForward[i] < 1E-100)
+            return -(1E-310);
+        }
+    rv->dirichletRv(aForward, newFreqs);
+    for (int i=0; i<2; i++)
+        {
+        aReverse[i] = newFreqs[i] * alpha0;
+        if (aReverse[i] < 1E-100)
+            return -(1E-310);
+        }
+    f[k] = newFreqs[0];
+    double factor = newFreqs[1] / oldFreqs[1];
+    for (int i=0; i<n; i++)
+        {
+        if (i != k)
+            f[i] *= factor;
+        }
+
+    // return the proposal ratio
+    double lnProposalRatio  = rv->lnDirichletPdf(aReverse, oldFreqs) - rv->lnDirichletPdf(aForward, newFreqs); // Hastings Ratio
+    lnProposalRatio += (n - 2) * log(factor); // Jacobian
+    return lnProposalRatio;
+
+#   else
+
     int n = (int)a.size();
     
     std::vector<double> aForward(n);
@@ -96,6 +140,17 @@ double ParameterExchangabilityRates::update(void) {
             return -(1E-310);
         }
     return rv->lnDirichletPdf(aReverse, oldFreqs) - rv->lnDirichletPdf(aForward, f);
+#   endif
+}
+
+double ParameterExchangabilityRates::logit(double x) {
+
+    return log(x / (1.0-x) );
+}
+
+double ParameterExchangabilityRates::ilogit(double x) {
+
+    return ( exp(x) / (1.0 + exp(x)) );
 }
 
 double ParameterExchangabilityRates::lnPriorProb(void) {

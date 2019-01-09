@@ -79,7 +79,7 @@ Model::Model(Settings* s, Alignment* a, RandomVariable* r) {
     std::cout << "   * Initializing rate matrix" << std::endl;
     cc_ijk[0] = new std::complex<double>[64];
     cc_ijk[1] = new std::complex<double>[64];
-    ParameterExchangabilityRates* e0 = new ParameterExchangabilityRates(rv, this, "Exchangabilities", 1000.0, isTimeReversible);
+    ParameterExchangabilityRates* e0 = new ParameterExchangabilityRates(rv, this, "Exchangabilities", 100.0, isTimeReversible);
     ParameterExchangabilityRates* e1 = new ParameterExchangabilityRates(*e0);
     parameters[0].push_back(e0);
     parameters[1].push_back(e1);

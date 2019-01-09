@@ -9,11 +9,13 @@
 RandomVariable::RandomVariable(void) {
 
     uint32_t seed = (uint32_t)time(NULL);
+    availableNormalRv = false;
     initialize(seed);
 }
 
 RandomVariable::RandomVariable(uint32_t seed) {
 
+    availableNormalRv = false;
     initialize(seed);
 }
 
@@ -791,6 +793,31 @@ double RandomVariable::lnGammacor(double x) {
 double RandomVariable::lnGammaPdf(double a, double b, double x) {
 
     return a * log(b) - lnGamma(a) + (a - 1.0) * log(x) - x * b;
+}
+
+double RandomVariable::normalRv(void) {
+
+    double fac, rsq, v1, v2;
+    
+    if ( availableNormalRv == false )
+        {
+        do
+            {
+            v1 = 2.0 * uniformRv() - 1.0;
+            v2 = 2.0 * uniformRv() - 1.0;
+            rsq = v1 * v1 + v2 * v2;
+            } while ( rsq >= 1.0 || rsq == 0.0 );
+        fac = sqrt(-2.0 * log(rsq)/rsq);
+        extraNormalRv = v1 * fac;
+        availableNormalRv = true;
+        return v2 * fac;
+        }
+    else
+        {
+        availableNormalRv = false;
+        return extraNormalRv;
+        }
+
 }
 
 double RandomVariable::pointNormal(double prob) {

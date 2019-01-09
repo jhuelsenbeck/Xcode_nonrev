@@ -40,6 +40,7 @@ class RandomVariable {
         double      lnExponentialPdf(double lambda, double x);
         double      lnGamma(double a);
         double      lnGammaPdf(double a, double b, double x);
+        double      normalRv(void);
         double      uniformRv(void);
 
     protected:
@@ -64,6 +65,8 @@ class RandomVariable {
         void        twist(void);
         uint16_t    index;
         uint32_t    mt[N];
+        double      extraNormalRv;
+        bool        availableNormalRv;
 };
 
 #endif

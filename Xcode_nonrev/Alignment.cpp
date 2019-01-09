@@ -27,7 +27,7 @@ Alignment::Alignment(std::string fileName) {
     while ( getline (seqStream, linestring) )
 		{
 		std::istringstream linestream(linestring);
-        std::cout << line << " -- \"" << linestring << "\"" << std::endl;
+        //std::cout << line << " -- \"" << linestring << "\"" << std::endl;
 		int ch;
 		std::string word = "";
 		int wordNum = 0;
@@ -38,7 +38,7 @@ Alignment::Alignment(std::string fileName) {
 			word = "";
 			linestream >> word;
 			wordNum++;
-            std::cout << "word:" << wordNum << "\"" << word << "\"" << std::endl;
+            //std::cout << "word:" << wordNum << "\"" << word << "\"" << std::endl;
 			if (line == 0)
 				{
 				/* read the number of taxa/chars from the first line */
