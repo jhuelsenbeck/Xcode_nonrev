@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2228C1EC21E7E7B5004CD163 /* TaxonBipartition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2228C1EA21E7E7B5004CD163 /* TaxonBipartition.cpp */; };
 		22BDAD1821E582F0009AAD49 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF121E582ED009AAD49 /* Model.cpp */; };
 		22BDAD1921E582F0009AAD49 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF521E582ED009AAD49 /* Settings.cpp */; };
 		22BDAD1A21E582F0009AAD49 /* BranchFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22BDACF621E582ED009AAD49 /* BranchFactory.cpp */; };
@@ -42,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2228C1EA21E7E7B5004CD163 /* TaxonBipartition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TaxonBipartition.cpp; sourceTree = "<group>"; };
+		2228C1EB21E7E7B5004CD163 /* TaxonBipartition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaxonBipartition.h; sourceTree = "<group>"; };
 		22BDACE721E581A4009AAD49 /* Xcode_nonrev */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Xcode_nonrev; sourceTree = BUILT_PRODUCTS_DIR; };
 		22BDACF121E582ED009AAD49 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
 		22BDACF221E582ED009AAD49 /* ConditionalLikelihoods.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ConditionalLikelihoods.h; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				22BDACF421E582ED009AAD49 /* RandomVariable.h */,
 				22BDACF521E582ED009AAD49 /* Settings.cpp */,
 				22BDACF721E582ED009AAD49 /* Settings.h */,
+				2228C1EA21E7E7B5004CD163 /* TaxonBipartition.cpp */,
+				2228C1EB21E7E7B5004CD163 /* TaxonBipartition.h */,
 				22BDAD0421E582EE009AAD49 /* TransitionProbabilities.cpp */,
 				22BDAD0521E582EE009AAD49 /* TransitionProbabilities.h */,
 			);
@@ -214,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22BDAD2321E582F0009AAD49 /* TransitionProbabilities.cpp in Sources */,
+				2228C1EC21E7E7B5004CD163 /* TaxonBipartition.cpp in Sources */,
 				22BDAD2921E582F0009AAD49 /* Parameter.cpp in Sources */,
 				22BDAD2A21E582F0009AAD49 /* RandomVariable.cpp in Sources */,
 				22BDAD1A21E582F0009AAD49 /* BranchFactory.cpp in Sources */,
