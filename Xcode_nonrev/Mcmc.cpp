@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Alignment.h"
 #include "Mcmc.h"
+#include "Msg.h"
 #include "Model.h"
 #include "RandomVariable.h"
 #include "Settings.h"
@@ -123,8 +124,10 @@ void Mcmc::runPowerPosterior(void) {
     //    std::cout << i+1 << " " << std::fixed << std::setprecision(20) << powers[i] << std::endl;
 
     // open the file for output of the power posterior information
-    powerFile = mySettings->getOutPutFileName() + ".pp";
+    powerFile = mySettings->getOutPutFileName() + ".powp";
     powerOut.open( powerFile.c_str(), std::ios::out );
+    if (powerOut.is_open() == false)
+        Msg::error("Couldn't open file \"" + powerFile + "\"");
 
     // parameters of the chain
     int preburninLength = mySettings->getPreburninLength();
@@ -422,11 +425,10 @@ void Mcmc::sampleChain(int n, int len, double lnL, double lnP) {
 void Mcmc::samplePower(int sn, int n, int len, double lnL, double power) {
 
     // parameter file
-    if (n == 0)
+    if (sn == 0)
         {
         powerOut << "num" << '\t';
         powerOut << "sample" << '\t';
-        powerOut << "state" << '\t';
         powerOut << "power" << '\t';
         powerOut << "likelihood" << '\t';
         powerOut << std::endl;
@@ -439,4 +441,5 @@ void Mcmc::samplePower(int sn, int n, int len, double lnL, double power) {
         powerOut << std::fixed << std::setprecision(4) << lnL << '\t';
         powerOut << std::endl;
         }
+    powerOut.flush();
 }

@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include "ParameterBaseFrequencies.h"
@@ -72,7 +73,47 @@ void ParameterBaseFrequencies::print(void) {
 }
 
 double ParameterBaseFrequencies::update(void) {
+
+#   if 1
     
+    // pick the element to update
+    int k = (int)(rv->uniformRv() * 4);
+    
+    // change value
+    std::vector<double> oldFreqs(2);
+    std::vector<double> newFreqs(2);
+    std::vector<double> aForward(2);
+    std::vector<double> aReverse(2);
+    oldFreqs[0] = f[k];
+    oldFreqs[1] = 1.0 - f[k];
+    for (int i=0; i<2; i++)
+        {
+        aForward[i] = oldFreqs[i] * alpha0;
+        if (aForward[i] < 1E-100)
+            return -(1E-310);
+        }
+    rv->dirichletRv(aForward, newFreqs);
+    for (int i=0; i<2; i++)
+        {
+        aReverse[i] = newFreqs[i] * alpha0;
+        if (aReverse[i] < 1E-100)
+            return -(1E-310);
+        }
+    f[k] = newFreqs[0];
+    double factor = newFreqs[1] / oldFreqs[1];
+    for (int i=0; i<4; i++)
+        {
+        if (i != k)
+            f[i] *= factor;
+        }
+
+    // return the proposal ratio
+    double lnProposalRatio  = rv->lnDirichletPdf(aReverse, oldFreqs) - rv->lnDirichletPdf(aForward, newFreqs); // Hastings Ratio
+    lnProposalRatio += (4 - 2) * log(factor); // Jacobian
+    return lnProposalRatio;
+
+#   else
+
     std::vector<double> aForward(4);
     std::vector<double> aReverse(4);
     std::vector<double> oldFreqs(4);
@@ -91,6 +132,8 @@ double ParameterBaseFrequencies::update(void) {
             return -(1E-310);
         }
     return rv->lnDirichletPdf(aReverse, oldFreqs) - rv->lnDirichletPdf(aForward, f);
+    
+#   endif
 }
 
 double ParameterBaseFrequencies::lnPriorProb(void) {

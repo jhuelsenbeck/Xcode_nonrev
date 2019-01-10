@@ -27,8 +27,6 @@ class ParameterExchangabilityRates : public Parameter {
 
     protected:
         void                            clone(ParameterExchangabilityRates& b);
-        double                          logit(double x);
-        double                          ilogit(double x);
         double                          alpha0;
         std::vector<double>             a;
         std::vector<double>             f;

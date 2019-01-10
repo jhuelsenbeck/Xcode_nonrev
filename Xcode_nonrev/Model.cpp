@@ -19,7 +19,7 @@
 #include "Settings.h"
 #include "TransitionProbabilities.h"
 
-#define USE_SSE
+#undef USE_SSE
 
 #if defined(USE_SSE)
 #   include <xmmintrin.h>
@@ -79,7 +79,7 @@ Model::Model(Settings* s, Alignment* a, RandomVariable* r) {
     std::cout << "   * Initializing rate matrix" << std::endl;
     cc_ijk[0] = new std::complex<double>[64];
     cc_ijk[1] = new std::complex<double>[64];
-    ParameterExchangabilityRates* e0 = new ParameterExchangabilityRates(rv, this, "Exchangabilities", 100.0, isTimeReversible);
+    ParameterExchangabilityRates* e0 = new ParameterExchangabilityRates(rv, this, "Exchangabilities", 1000.0, isTimeReversible);
     ParameterExchangabilityRates* e1 = new ParameterExchangabilityRates(*e0);
     parameters[0].push_back(e0);
     parameters[1].push_back(e1);
@@ -136,14 +136,16 @@ Model::Model(Settings* s, Alignment* a, RandomVariable* r) {
         proposals.push_back( new ProposalInfo(10.0, 0.0, "branch length update") );
         proposals.push_back( new ProposalInfo(10.0, 0.0, "tree and branch lengths update (SPR)") );
         proposals.push_back( new ProposalInfo(10.0, 0.0, "tree and branch lengths update (LOCAL)") );
-        proposals.push_back( new ProposalInfo( 0.0, 0.0, "root position update") );
+        if (isTimeReversible == false)
+            proposals.push_back( new ProposalInfo( 0.0, 0.0, "root position update") );
         }
     else
         {
         proposals.push_back( new ProposalInfo(75.0, 0.0, "branch length update") );
         proposals.push_back( new ProposalInfo( 0.0, 0.0, "tree and branch lengths update (SPR)") );
         proposals.push_back( new ProposalInfo( 0.0, 0.0, "tree and branch lengths update (LOCAL)") );
-        proposals.push_back( new ProposalInfo( 5.0, 0.0, "root position update") );
+        if (isTimeReversible == false)
+            proposals.push_back( new ProposalInfo( 5.0, 0.0, "root position update") );
         }
     if (isTimeReversible == true)
         proposals.push_back( new ProposalInfo( 5.0, 0.0, "base frequency update") );
@@ -871,6 +873,13 @@ double Model::lnPrior(int whichSpace) {
     // substitution rates
     ParameterExchangabilityRates* sr = getParameterExchangabilityRates(whichSpace);
     lnP += rv->lnDirichletPdf( sr->getExchangabilityAlpha(), sr->getExchangabilityRates() );
+    
+    // base frequencies
+    if (isTimeReversible == true)
+        {
+        ParameterBaseFrequencies* bf = getParameterBaseFrequencies(whichSpace);
+        lnP += rv->lnDirichletPdf( bf->getBaseFrequencyAlpha(), bf->getBaseFrequencies() );
+        }
     
     return lnP;
 }

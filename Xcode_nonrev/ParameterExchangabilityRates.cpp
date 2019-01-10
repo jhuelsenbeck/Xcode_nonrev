@@ -143,16 +143,6 @@ double ParameterExchangabilityRates::update(void) {
 #   endif
 }
 
-double ParameterExchangabilityRates::logit(double x) {
-
-    return log(x / (1.0-x) );
-}
-
-double ParameterExchangabilityRates::ilogit(double x) {
-
-    return ( exp(x) / (1.0 + exp(x)) );
-}
-
 double ParameterExchangabilityRates::lnPriorProb(void) {
 
     return rv->lnDirichletPdf(a, f);
