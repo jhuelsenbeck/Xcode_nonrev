@@ -38,6 +38,7 @@ class Model {
         std::complex<double>*                           getCijk(int whichSpace) { return cc_ijk[whichSpace]; }
         double                                          getDStatistic(int whichSpace) { return dStatistic[whichSpace]; }
         std::string                                     getGammaShape(int whichSpace);
+        std::vector<double>                             getOrderedBranchLengths(int whichSpace);
         ParameterBaseFrequencies*                       getParameterBaseFrequencies(int whichSpace);
         ParameterTree*                                  getParameterTree(int whichSpace);
         ParameterExchangabilityRates*                   getParameterExchangabilityRates(int whichSpace);

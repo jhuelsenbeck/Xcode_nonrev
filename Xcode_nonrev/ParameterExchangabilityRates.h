@@ -28,6 +28,7 @@ class ParameterExchangabilityRates : public Parameter {
     protected:
         void                            clone(ParameterExchangabilityRates& b);
         double                          alpha0;
+        bool                            sumToWithin(double x, double tol, std::vector<double>& vec);
         std::vector<double>             a;
         std::vector<double>             f;
 };

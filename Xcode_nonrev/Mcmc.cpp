@@ -125,9 +125,13 @@ void Mcmc::runPowerPosterior(void) {
 
     // open the file for output of the power posterior information
     powerFile = mySettings->getOutPutFileName() + ".powp";
+    parmFile  = mySettings->getOutPutFileName() + ".p";
+    treeFile  = mySettings->getOutPutFileName() + ".t";
     powerOut.open( powerFile.c_str(), std::ios::out );
-    if (powerOut.is_open() == false)
-        Msg::error("Couldn't open file \"" + powerFile + "\"");
+    parmOut.open( parmFile.c_str(), std::ios::out );
+    treeOut.open( treeFile.c_str(), std::ios::out );
+    if (powerOut.is_open() == false || parmOut.is_open() == false || treeOut.is_open() == false)
+        Msg::error("Couldn't open an output file for power analysis");
 
     // parameters of the chain
     int preburninLength = mySettings->getPreburninLength();
@@ -353,6 +357,8 @@ void Mcmc::runPowerPosterior(void) {
     std::cout << "   * MCMC took " << elapsed.count() << " seconds" << std::endl;
 
     powerOut.close();
+    parmOut.close();
+    treeOut.close();
 }
 
 double Mcmc::safeExponentiation(double lnX) {
@@ -424,7 +430,7 @@ void Mcmc::sampleChain(int n, int len, double lnL, double lnP) {
 
 void Mcmc::samplePower(int sn, int n, int len, double lnL, double power) {
 
-    // parameter file
+    // power file
     if (sn == 0)
         {
         powerOut << "num" << '\t';
@@ -442,4 +448,56 @@ void Mcmc::samplePower(int sn, int n, int len, double lnL, double power) {
         powerOut << std::endl;
         }
     powerOut.flush();
+    
+    // parameter file
+    if (sn == 0)
+        {
+        parmOut << "Sample" << '\t';
+        parmOut << "Cycle" << '\t';
+        parmOut << "Power" << '\t';
+        parmOut << "Shape" << '\t';
+        char nucs[4] = { 'A', 'C', 'G', 'T' };
+        if (mySettings->getIsReversible() == false)
+            {
+            for (int i=0; i<4; i++)
+                {
+                for (int j=0; j<4; j++)
+                    {
+                    if (i != j)
+                        parmOut << "r[" << nucs[i] << "->" << nucs[j] << "]" << '\t';
+                    }
+                }
+            }
+        else
+            {
+            for (int i=0; i<4; i++)
+                {
+                for (int j=i+1; j<4; j++)
+                    {
+                    if (i != j)
+                        parmOut << "r[" << nucs[i] << "->" << nucs[j] << "]" << '\t';
+                    }
+                }
+            parmOut << "pi[A]" << '\t' << "pi[C]" << '\t' << "pi[G]" << '\t' << "pi[T]" << '\t';
+            }
+
+        std::vector<double> brls = myModel->getOrderedBranchLengths(1);
+        for (int i=0; i<brls.size(); i++)
+            parmOut << "br[" << i+1 << "]" << '\t';
+        parmOut << std::endl;
+        }
+    else
+        {
+        parmOut << sn << '\t';
+        parmOut << n << '\t';
+        parmOut << std::fixed << std::setprecision(20) << power << '\t';
+        parmOut << myModel->getGammaShape(1);
+        parmOut << myModel->getSubstitutionRates(1);
+        if (mySettings->getIsReversible() == true)
+            parmOut << myModel->getPiString(1);
+        std::vector<double> brls = myModel->getOrderedBranchLengths(1);
+        for (int i=0; i<brls.size(); i++)
+            parmOut << std::fixed << std::setprecision(6) << brls[i] << " ";
+        parmOut << std::endl;
+        }
 }

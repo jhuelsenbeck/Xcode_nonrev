@@ -35,7 +35,7 @@ Settings::Settings(int argc, char* argv[]) {
     commandString.push_back( "-st" );
     commandString.push_back( "50000" );
     commandString.push_back( "-p" );
-    commandString.push_back( "100" );
+    commandString.push_back( "1000" );
     commandString.push_back( "-s" );
     commandString.push_back( "100" );
     commandString.push_back( "-lambda" );

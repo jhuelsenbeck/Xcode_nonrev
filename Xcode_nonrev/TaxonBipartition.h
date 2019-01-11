@@ -6,17 +6,22 @@
 class TaxonBipartition {
 
     public:
-                            TaxonBipartition(void) = delete;
+                            TaxonBipartition(void);
                             TaxonBipartition(int s);
+                            TaxonBipartition(const TaxonBipartition& b);
         bool                operator<(const TaxonBipartition& b) const;
+        bool                operator==(const TaxonBipartition& b) const;
+        void                operator|=(const TaxonBipartition& b);
+        bool                operator[](int idx);
         void                flip(void);
-        int                 getSize(void) { return size; }
+        void                resize(int s);
+        int                 size(void) { return _size; }
         std::vector<bool>&  getBipartition(void) { return bits; }
-        void                setBit(int idx) { bits[idx] = true; }
-        void                setAllBits(bool tf);
+        void                set(int idx) { bits[idx] = true; }
+        void                setAll(bool tf);
     
     protected:
-        int                 size;
+        int                 _size;
         std::vector<bool>   bits;
 };
 

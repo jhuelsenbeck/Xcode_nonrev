@@ -17,9 +17,10 @@
 #include "ProposalInfo.h"
 #include "RandomVariable.h"
 #include "Settings.h"
+#include "TaxonBipartition.h"
 #include "TransitionProbabilities.h"
 
-#undef USE_SSE
+#define USE_SSE
 
 #if defined(USE_SSE)
 #   include <xmmintrin.h>
@@ -136,16 +137,14 @@ Model::Model(Settings* s, Alignment* a, RandomVariable* r) {
         proposals.push_back( new ProposalInfo(10.0, 0.0, "branch length update") );
         proposals.push_back( new ProposalInfo(10.0, 0.0, "tree and branch lengths update (SPR)") );
         proposals.push_back( new ProposalInfo(10.0, 0.0, "tree and branch lengths update (LOCAL)") );
-        if (isTimeReversible == false)
-            proposals.push_back( new ProposalInfo( 0.0, 0.0, "root position update") );
+        proposals.push_back( new ProposalInfo( 0.0, 0.0, "root position update") );
         }
     else
         {
         proposals.push_back( new ProposalInfo(75.0, 0.0, "branch length update") );
         proposals.push_back( new ProposalInfo( 0.0, 0.0, "tree and branch lengths update (SPR)") );
         proposals.push_back( new ProposalInfo( 0.0, 0.0, "tree and branch lengths update (LOCAL)") );
-        if (isTimeReversible == false)
-            proposals.push_back( new ProposalInfo( 5.0, 0.0, "root position update") );
+        proposals.push_back( new ProposalInfo( 5.0, 0.0, "root position update") );
         }
     if (isTimeReversible == true)
         proposals.push_back( new ProposalInfo( 5.0, 0.0, "base frequency update") );
@@ -160,6 +159,8 @@ Model::Model(Settings* s, Alignment* a, RandomVariable* r) {
         sumWeight += proposals[i]->getWeight();
     for (int i=0; i<proposals.size(); i++)
         proposals[i]->setProbability( proposals[i]->getWeight() / sumWeight );
+    /*for (int i=0; i<proposals.size(); i++)
+        std::cout << i << " Probability of " << std::fixed << std::setprecision(2) << proposals[i]->getProbability() * 100 << "\% of performing " << proposals[i]->getName() << std::endl;*/
 }
 
 Model::~Model(void) {
@@ -314,10 +315,10 @@ void Model::adjustTuningParameters(void) {
                 newTuning /= (1.0 + ((acceptanceRate-p) / (1.0-p)) );
             else
                 newTuning *= (2.0 - acceptanceRate / p);
-            if (newTuning < e0->getExchangabilityAlpha().size() )
-                newTuning = e0->getExchangabilityAlpha().size();
-            else if (newTuning > 10000.0)
-                newTuning = 10000.0;
+            if (newTuning < 2.0 )
+                newTuning = 2.0;
+            else if (newTuning > 1000.0)
+                newTuning = 1000.0;
             e0->setTuning(newTuning);
             e1->setTuning(newTuning);
             std::cout << "   * Adjusting exchangability rates tuning parameter from " << oldTuning << " to " << newTuning << " (" << acceptanceRate << ")" << std::endl;
@@ -422,6 +423,70 @@ std::string Model::getGammaShape(int whichSpace) {
     return str;
 }
 
+std::vector<double> Model::getOrderedBranchLengths(int whichSpace) {
+    
+    // first, put all of the taxon bipartitions and branch lengths into a map
+    std::map<TaxonBipartition, double, BipartitionComparator> rootedParts;
+    ParameterTree* t = getParameterTree(whichSpace);
+    std::vector<Node*> dps = t->getDownPassSequence();
+    for (int n=0; n<dps.size(); n++)
+        {
+        Node* p = dps[n];
+        if (p->getAncestor() != NULL)
+            {
+            TaxonBipartition part = p->getBipartition();
+            part.setAll(false);
+            if (p->getIsLeaf() == true)
+                {
+                part.set(p->getIndex());
+                }
+            else
+                {
+                std::vector<Node*> des = p->getDescendants();
+                if (des.size() != 2)
+                    Msg::error("Expected two descendants!");
+                part |= des[0]->getBipartition();
+                part |= des[1]->getBipartition();
+                }
+            Branch* br = t->findBranch(p, p->getAncestor());
+            if (br == NULL)
+                Msg::error("Couldn't find branch");
+            double x = br->getLength();
+            rootedParts.insert( std::make_pair( TaxonBipartition(part), x) );
+            }
+        }
+    
+    // second, put them into another map, but this time as an unrooted tree
+    std::map<TaxonBipartition, double, BipartitionComparator> unrootedParts;
+    for (std::map<TaxonBipartition, double, BipartitionComparator>::iterator it = rootedParts.begin(); it != rootedParts.end(); it++)
+        {
+        TaxonBipartition part = TaxonBipartition(it->first);
+        if (part[0] == true)
+            part.flip();
+        std::map<TaxonBipartition, double, BipartitionComparator>::iterator fit = unrootedParts.find(part);
+        if (fit != unrootedParts.end())
+            {
+            // found the partition!
+            double x = it->second;
+            x += fit->second;
+            it->second = x;
+            }
+        else
+            {
+            // it's unique
+            unrootedParts.insert( std::make_pair(part, it->second) );
+            }
+        }
+
+    // third, put the branch lengths in to a vector
+    std::vector<double> brls;
+    for (std::map<TaxonBipartition, double, BipartitionComparator>::iterator it = unrootedParts.begin(); it != unrootedParts.end(); it++)
+        {
+        brls.push_back( it->second );
+        }
+    return brls;
+}
+
 ParameterBaseFrequencies* Model::getParameterBaseFrequencies(int whichSpace) {
 
     for (Parameter* parm : parameters[whichSpace])
@@ -484,7 +549,10 @@ std::string Model::getSubstitutionRates(int whichSpace) {
     ParameterExchangabilityRates* sr = getParameterExchangabilityRates(whichSpace);
     char cStr[50];
     std::string str = "";
-    for (int i=0; i<12; i++)
+    int n = 12;
+    if (isTimeReversible == true)
+        n = 6;
+    for (int i=0; i<n; i++)
         {
         sprintf(cStr, "%1.4lf", (*sr)[i]);
         str += cStr;

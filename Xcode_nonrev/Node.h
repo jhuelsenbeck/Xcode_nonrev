@@ -4,6 +4,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "TaxonBipartition.h"
 class Branch;
 
 
@@ -18,6 +19,7 @@ class Node {
         void                flipActiveCl(void);
         void                flipActiveTi(void);
         Node*               getAncestor(void) { return ancestor; }
+        TaxonBipartition&   getBipartition(void) { return bipartition; }
         std::vector<Node*>  getDescendants(void);
         Branch*             getMyBranch(void) { return myBranch; }
         std::set<Node*>&    getNeighbors(void) { return neighbors; }
@@ -53,6 +55,7 @@ class Node {
         bool                update;
         int                 activeCl;
         int                 activeTi;
+        TaxonBipartition    bipartition;
 };
 
 #endif

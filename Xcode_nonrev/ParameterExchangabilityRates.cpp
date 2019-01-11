@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include "Msg.h"
 #include "ParameterExchangabilityRates.h"
 #include "RandomVariable.h"
 
@@ -112,6 +113,22 @@ double ParameterExchangabilityRates::update(void) {
         if (i != k)
             f[i] *= factor;
         }
+    
+    // check
+    if ( sumToWithin(1.0, 0.00001, f) == false )
+        {
+        std::cout << "Exchangability vector does not sum to 1.0" << std::endl;
+        for (int i=0; i<n; i++)
+            std::cout << std::fixed << std::setprecision(5) << f[i] << " ";
+        std::cout << std::endl;
+        }
+
+    // renormalize, just in case
+    double sum = 0.0;
+    for (int i=0; i<n; i++)
+        sum += f[i];
+    for (int i=0; i<n; i++)
+        f[i] /= sum;
 
     // return the proposal ratio
     double lnProposalRatio  = rv->lnDirichletPdf(aReverse, oldFreqs) - rv->lnDirichletPdf(aForward, newFreqs); // Hastings Ratio
@@ -146,6 +163,17 @@ double ParameterExchangabilityRates::update(void) {
 double ParameterExchangabilityRates::lnPriorProb(void) {
 
     return rv->lnDirichletPdf(a, f);
+}
+
+bool ParameterExchangabilityRates::sumToWithin(double x, double tol, std::vector<double>& vec) {
+
+    double sum = 0.0;
+    for (int i=0; i<vec.size(); i++)
+        sum += vec[i];
+    
+    if (fabs(sum-x) < tol)
+        return true;
+    return false;
 }
 
 std::string ParameterExchangabilityRates::getParmString(int n) {

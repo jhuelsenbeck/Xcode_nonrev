@@ -224,6 +224,10 @@ void ParameterTree::buildRandomTree(std::vector<std::string> names) {
     
     // initialize the traversal sequence for the tree
     initializeDownPassSequence();
+    
+    // set sizes of taxon bipartitions
+    for (Node* p : nodes)
+        p->getBipartition().resize((int)taxonNames.size());
 
     //printNodes();
     print();
@@ -349,6 +353,10 @@ void ParameterTree::buildTreeFromNewickString(std::vector<std::string> tn, std::
         }
 
     initializeDownPassSequence();
+
+    // set sizes of taxon bipartitions
+    for (Node* p : nodes)
+        p->getBipartition().resize((int)taxonNames.size());
 }
 
 void ParameterTree::clone(ParameterTree& t) {
@@ -401,6 +409,10 @@ void ParameterTree::clone(ParameterTree& t) {
             p->setMyBranch(b);
             }
         }
+
+    // set sizes of taxon bipartitions
+    for (Node* p : nodes)
+        p->getBipartition().resize((int)taxonNames.size());
 }
 
 Node* ParameterTree::copyNode(std::map<Node*, Node*>& visited, Node* orig) {

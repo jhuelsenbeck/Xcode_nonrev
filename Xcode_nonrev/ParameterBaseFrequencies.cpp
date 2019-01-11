@@ -79,6 +79,7 @@ double ParameterBaseFrequencies::update(void) {
     // pick the element to update
     int k = (int)(rv->uniformRv() * 4);
     
+    //std::cout << "(" << f[0] << " " << f[1] << " " << f[2] << " " << f[3] << ") -> ";
     // change value
     std::vector<double> oldFreqs(2);
     std::vector<double> newFreqs(2);
@@ -106,6 +107,15 @@ double ParameterBaseFrequencies::update(void) {
         if (i != k)
             f[i] *= factor;
         }
+
+    // renormalize, just in case
+    double sum = 0.0;
+    for (int i=0; i<4; i++)
+        sum += f[i];
+    for (int i=0; i<4; i++)
+        f[i] /= sum;
+
+    //std::cout << "(" << f[0] << " " << f[1] << " " << f[2] << " " << f[3] << ")" << std::endl;
 
     // return the proposal ratio
     double lnProposalRatio  = rv->lnDirichletPdf(aReverse, oldFreqs) - rv->lnDirichletPdf(aForward, newFreqs); // Hastings Ratio
